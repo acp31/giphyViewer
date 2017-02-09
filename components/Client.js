@@ -1,14 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-const LOCAL_STORAGE_KEY = 'fsr-spotify-fake-auth';
-
-// There are risks with using localStorage for API tokens in a production
-// application. You open yourself up to XSS attacks. If malicious
-// JavaScript makes it into your app, that JavaScript will have access
-// to localStorage and therefore any sensitive tokens.
-
-// For more info on token management, see this article:
-// https://auth0.com/blog/cookies-vs-tokens-definitive-guide/
+const LOCAL_STORAGE_KEY = 'fake-auth';
 
 class Client {
   constructor() {
@@ -57,7 +49,7 @@ class Client {
   }
 
   isTokenValid() {
-    // See note about tokens above
+
     const url = '/api/check_token?token=' + this.token;
     return fetch(url, {
       method: 'get',
@@ -74,7 +66,7 @@ class Client {
   }
 
   getAlbums(albumIds) {
-    // See note about tokens above
+
     const url = (
       '/api/albums?ids=' + albumIds.join(',') + '&token=' + this.token
     );

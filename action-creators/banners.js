@@ -149,12 +149,16 @@ export function loadCurrentProjectExecutions(list) {
   }
 }
 
+export function setsCurrentProjectState(project) {
+  return {
+    type: SET_CURRENT_PROJECT,
+      payload: project
+  }
+}
+
 export function setCurrentProject(project) {
   return(dispatch, getState) => {
-    dispatch({
-      type: SET_CURRENT_PROJECT,
-      payload: project
-    })
+    dispatch(setsCurrentProjectState(project))
     let state = getState();
     let currentProject = state.client.currentProject;
     let currentProjects = state.client.projects[currentProject];
